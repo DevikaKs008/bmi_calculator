@@ -1,7 +1,24 @@
 import 'package:flutter/material.dart';
 
-class Bmi extends StatelessWidget {
+class Bmi extends StatefulWidget {
   const Bmi({super.key});
+
+  @override
+  State<Bmi> createState() => _BmiState();
+}
+
+class _BmiState extends State<Bmi> {
+  final heightcontroller = TextEditingController();
+  final weightcontroller = TextEditingController();
+  String result = "";
+  void calculate() {
+    double h = double.parse(heightcontroller.text) / 100;
+    double w = double.parse(weightcontroller.text);
+    double bmi = w / (h * h);
+    setState(() {
+      result = "your BMI is : ${bmi.toStringAsFixed(2)}";
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,15 +33,15 @@ class Bmi extends StatelessWidget {
               end: Alignment.bottomCenter,
 
               colors: [
-                const Color.fromARGB(255, 190, 167, 139),
-                const Color.fromARGB(255, 215, 136, 18),
+                const Color.fromARGB(255, 22, 185, 222),
+                const Color.fromARGB(255, 2, 72, 63),
               ],
             ),
             border: Border.all(color: Colors.white),
           ),
           child: Column(
             children: [
-              SizedBox(height: 20),
+              SizedBox(height: 50),
               Text(
                 "BMI CALCULATOR",
                 style: TextStyle(
@@ -48,6 +65,7 @@ class Bmi extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: TextField(
+                        controller: heightcontroller,
                         decoration: InputDecoration(
                           fillColor: const Color.fromARGB(255, 220, 213, 213),
                           filled: true,
@@ -66,6 +84,7 @@ class Bmi extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: TextField(
+                        controller: weightcontroller,
                         decoration: InputDecoration(
                           fillColor: const Color.fromARGB(255, 218, 213, 213),
                           filled: true,
@@ -87,13 +106,20 @@ class Bmi extends StatelessWidget {
                         padding: const EdgeInsets.all(8.0),
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.amber,
+                            backgroundColor: const Color.fromARGB(
+                              255,
+                              3,
+                              45,
+                              59,
+                            ),
                             foregroundColor: Colors.black,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10),
                             ),
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            calculate();
+                          },
                           child: Text(
                             "Get Started",
                             style: TextStyle(
@@ -103,6 +129,13 @@ class Bmi extends StatelessWidget {
                             ),
                           ),
                         ),
+                      ),
+                    ),
+                    Text(
+                      result,
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   ],

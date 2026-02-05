@@ -13,8 +13,8 @@ class Splash extends StatelessWidget {
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              const Color.fromARGB(255, 190, 167, 139),
-              const Color.fromARGB(255, 215, 136, 18),
+              const Color.fromARGB(255, 22, 185, 222),
+              const Color.fromARGB(255, 2, 72, 63),
             ],
             begin: Alignment.topLeft,
             end: Alignment.bottomLeft,
